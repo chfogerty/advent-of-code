@@ -5,6 +5,7 @@ fn main() {
     println!("part b {}", solution2(INPUT, 256));
 }
 
+#[allow(dead_code)]
 fn solution(data: &str, days: usize) -> usize {
     let mut fish = parse_data(data);
 
