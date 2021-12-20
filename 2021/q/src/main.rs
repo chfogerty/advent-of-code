@@ -122,13 +122,6 @@ mod tests {
         assert_eq!(part_a(TEST_INPUT), 45);
     }
 
-    // #[test]
-    // fn test() {
-    //     let target = parse_data(INPUT);
-    //     get_all_velocities(target);
-    //     assert_eq!(1, 2);
-    // }
-
     #[test]
     fn test_b() {
         assert_eq!(part_b(TEST_INPUT), 112);
