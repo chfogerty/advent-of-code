@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Run",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "${relativeFileDirname}${/}input.txt"
+            ]
+        },
+        {
+            "name": "Test",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "${relativeFileDirname}${/}test.txt"
+            ]
+        },
+    ]
+}
