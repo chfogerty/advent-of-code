@@ -1,0 +1,1 @@
+This was done in Excel. I didn't save the file. Easy enough to re-create if needed.
