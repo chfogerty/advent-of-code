@@ -1,3 +1,5 @@
+import copy
+
 UP = 0
 RIGHT = 1
 DOWN = 2
@@ -27,6 +29,9 @@ class Guard:
         self.row = next_pos[0]
         self.col = next_pos[1]
 
+    def get_dir(self):
+        return self.dir
+
     def next_dir(self):
         # rotate 90
         return (self.dir + 1) % 4
@@ -52,7 +57,35 @@ def simulate_guard(guard, obstacles, room_size):
         else:
             guard.move()
 
-    return len(positions)
+    return positions
+
+def check_loop(guard, obstacles, room_size):
+    dir_pos = [set(), set(), set(), set()]
+
+    while in_bounds(guard.get_pos(), room_size):
+        if (guard.get_pos() in dir_pos[guard.get_dir()]):
+            # if we've been in this spot going this direction before, we're in a loop
+            return True
+        dir_pos[guard.get_dir()].add(guard.get_pos())
+        next_pos = guard.next_pos()
+        if next_pos in obstacles:
+            guard.rotate()
+        else:
+            guard.move()
+
+    return False
+
+def check_loops(guard, obstacles, room_size, positions):
+    loops = 0
+    for position in positions:
+        if position == guard.get_pos() or position in obstacles:
+            continue
+        
+        new_obs = obstacles.copy()
+        new_obs.add(position)
+        if check_loop(copy.copy(guard), new_obs, room_size):
+            loops += 1
+    return loops
 
 def parse(filename):
     obstacles = set()
@@ -81,4 +114,6 @@ if __name__ == "__main__":
     filename = sys.argv[1]
 
     obstacles, guard, size = parse(filename)
-    print(simulate_guard(guard, obstacles, size))
+    positions = simulate_guard(copy.copy(guard), obstacles, size)
+    print(len(positions))
+    print(check_loops(guard, obstacles, size, positions))
