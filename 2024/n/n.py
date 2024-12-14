@@ -72,7 +72,7 @@ def pprint_robots(robots, h, w):
         s = ''
         for c in range(w):
             if (c, r) in pos:
-                s += '0'
+                s += '@'
             else:
                 s += ' '
         print(s)
@@ -86,9 +86,13 @@ if __name__ == "__main__":
 
     robots, height, width = parse(filename)
     seconds = 0
+    no_overlap = len(robots)
     while seconds < 10302:
-        print(f'Seconds: {seconds}')
-        pprint_robots(robots, height, width)
+        pos = len({robot.get_pos() for robot in robots})
+        if pos == no_overlap:
+            print(f'Seconds: {seconds}, unique: {pos}')
+            pprint_robots(robots, height, width)
+            max_pos = pos
         seconds += 1
         for robot in robots:
             robot.move()
