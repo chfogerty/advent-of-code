@@ -21,27 +21,6 @@ def gen_next_neighbors(pos, size, condition):
     ortho = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     return gen_neighbors(pos, size, condition, ortho)
 
-# def a_star(start, goal, size, walls):
-#     visited = set()
-#     prio_queue = []
-#     heappush(prio_queue, (heuristic(start, goal), start))
-#     g_score = dict()
-#     g_score[start] = 0
-
-#     while len(prio_queue) > 0:
-#         f, point = heappop(prio_queue)
-#         if point in visited:
-#             continue
-#         visited.add(point)
-#         if point == goal:
-#             return f
-
-#         for neighbor in gen_neighbors(point, size, lambda p: p not in walls):
-#             if neighbor not in visited:
-#                 g_score[neighbor] = g_score[point] + 1
-#                 heappush(prio_queue, (g_score[neighbor] + heuristic(neighbor, goal), neighbor))
-#     return -1
-
 def bfs(start, goal, size, walls):
     visited = dict()
     prio_queue = []
