@@ -78,5 +78,3 @@ if __name__ == "__main__":
     total, all_prices = p1(initial_numbers)
     print(total)
     print(p2(all_prices))
-    # Find each sequence of 4 and record what final price it leads to
-    # for each sequence of 4, find the sum of bananas
